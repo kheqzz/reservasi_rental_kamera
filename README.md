@@ -1,3 +1,3 @@
-# flutter_application_1
+# reservasi rental kamera
 
-A new Flutter project.
+sebuah aplikasi untuk revervasi kamera sebelum melakukan penyewaan/rental,berguna agar kamera yang diincar tidak didahului orang
