@@ -40,7 +40,14 @@ class _HomeState extends State<Home> {
 
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: ListContainerGenerator(listItem: cameras),
+            child: ListContainerGenerator(
+              listItem: cameras, // <-- input list map dari database
+              itemBuilder: (p0, listData) {
+                return IsiContainerTigaColumnPlusCurrencyIntl(
+                  itemMap: listData,
+                );
+              },
+            ),
           ),
         ],
       ),
@@ -81,13 +88,20 @@ class _HomeState extends State<Home> {
 }
 
 class ListContainerGenerator extends StatelessWidget {
+  final Widget Function(BuildContext, Map<String, dynamic> listData)
+  itemBuilder;
   final List<Map<String, dynamic>> listItem;
-  const ListContainerGenerator({super.key, required this.listItem});
+  const ListContainerGenerator({
+    super.key,
+    required this.listItem,
+    required this.itemBuilder,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: List.generate(listItem.length, (index) {
+        
         return Padding(
           padding: const EdgeInsets.symmetric(vertical: 5),
           child: Container(
@@ -119,12 +133,7 @@ class ListContainerGenerator extends StatelessWidget {
                     borderRadius: BorderRadius.circular(20),
                     color: Colors.grey,
                   ),
-                  IsiContainerTigaColumnPlusCurrencyIntl(
-                    title: listItem[index]['name'],
-                    textCurrency: formatCurrency.format(
-                      cameras[index]['pricePerDay'],
-                    ),
-                  ),
+                  itemBuilder(context, listItem[index]),
                 ],
               ),
             ),
@@ -136,14 +145,12 @@ class ListContainerGenerator extends StatelessWidget {
 }
 
 class IsiContainerTigaColumnPlusCurrencyIntl extends StatelessWidget {
+  final Map<String, dynamic> itemMap;
   const IsiContainerTigaColumnPlusCurrencyIntl({
     super.key,
-    required this.title,
-    required this.textCurrency,
+    y,
+    required this.itemMap,
   });
-
-  final String title;
-  final String textCurrency;
 
   @override
   Widget build(BuildContext context) {
@@ -155,13 +162,13 @@ class IsiContainerTigaColumnPlusCurrencyIntl extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            title,
+            itemMap['name'],
             style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
           ),
           Row(
             children: [
               Text(
-                textCurrency,
+                formatCurrency.format(itemMap['pricePerDay']),
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 18,

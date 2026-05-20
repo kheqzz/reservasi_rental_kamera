@@ -38,10 +38,10 @@ class _HelperShapeState extends State<HelperShape> {
             ),
             SizedBox(height: 50),
             GarisPutusPutusRectangle(
-              panjang_garis: 5,
-              jarak_spasi_garis: 2,
+              panjangGaris: 5,
+              jarakSpasiGaris: 2,
               color: Colors.black,
-              ketebalan_stroke: 2,
+              ketebalanStroke: 2,
               child: Text('data'),
             ),
             SizedBox(height: 50),
@@ -139,16 +139,16 @@ class TextFieldCustomIsi extends StatelessWidget {
 }
 
 class GarisPutusPutusRectangle extends StatelessWidget {
-  final double panjang_garis;
-  final double jarak_spasi_garis;
-  final double ketebalan_stroke;
+  final double panjangGaris;
+  final double jarakSpasiGaris;
+  final double ketebalanStroke;
   final Color color;
   final Widget child;
   const GarisPutusPutusRectangle({
     super.key,
-    required this.panjang_garis,
-    required this.jarak_spasi_garis,
-    required this.ketebalan_stroke,
+    required this.panjangGaris,
+    required this.jarakSpasiGaris,
+    required this.ketebalanStroke,
     required this.color,
     required this.child,
   });
@@ -157,8 +157,8 @@ class GarisPutusPutusRectangle extends StatelessWidget {
   Widget build(BuildContext context) {
     return DottedBorder(
       options: RectDottedBorderOptions(
-        dashPattern: [panjang_garis, jarak_spasi_garis],
-        strokeWidth: ketebalan_stroke,
+        dashPattern: [panjangGaris, jarakSpasiGaris],
+        strokeWidth: ketebalanStroke,
         color: color,
       ),
       child: child,

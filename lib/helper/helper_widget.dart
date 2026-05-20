@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/helper/database_example.dart';
+
 import 'package:flutter_application_1/helper/widget_with_builder.dart';
 
 class HelperWidget extends StatefulWidget {
@@ -30,7 +30,6 @@ class _HelperWidgetState extends State<HelperWidget> {
                   onChanged: (value) {
                     setState(() {
                       opsiPembayaran = value;
-                      print(opsiPembayaran);
                     });
                   },
                   subtitile: 'pembayaran dengan qriss',
@@ -42,7 +41,6 @@ class _HelperWidgetState extends State<HelperWidget> {
                   onChanged: (value) {
                     setState(() {
                       opsiPembayaran = value;
-                      print(opsiPembayaran);
                     });
                   },
                   subtitile: 'pembayaran dengan ewaket',
